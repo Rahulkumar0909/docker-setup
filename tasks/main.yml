@@ -24,4 +24,9 @@
     state: enabled
   loop: "{{ ports }}" 
   
-- name:   
+- name: masquerade setting
+  ansible.posix.firewalld:
+    zone: public
+    masquerade: enable
+    permanent: yes
+    state: enabled
