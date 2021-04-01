@@ -15,4 +15,13 @@
   service:
         name: docker
         state: started
-        enabled: yes        
+        enabled: yes  
+        
+- name: permit traffic
+  ansible.posix.firewalld:
+    port: "{{ item }}/tcp"
+    permanent: yes
+    state: enabled
+  loop: "{{ ports }}" 
+  
+- name:   
