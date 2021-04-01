@@ -8,8 +8,8 @@
         baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
         gpgcheck: no
 
-- name: Installing Docker
-  shell: "yum install docker-ce --nobest -y"
+- name: Installing Docker only if not present
+  shell: rpm -q docker-ce; if [ $? != 0 ]; then yum install docker-ce --nobest -y; fi 
 
 - name: Starting Docker Services
   service:
